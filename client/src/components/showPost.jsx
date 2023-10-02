@@ -5,6 +5,7 @@ function ShowPost(props) {
 
     return (
         <div data-testid='show-post'>
+            <h2>{post.title}</h2>
             <img src={post.photo}></img>
             <p>{post.body}</p>
         </div>
