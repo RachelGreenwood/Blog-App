@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ShowPost from './showPost';
+import Form from './form';
 
 function Posts() {
     const [posts, setPosts] = useState([]);
@@ -12,6 +13,20 @@ function Posts() {
                 setPosts(posts);
                 console.log('Posts fetched...', posts);
             });
+    }
+
+    const handlePostRequest = (data) => {
+        console.log("Inside the POST, ", data);
+        fetch("http://localhost:8080/posts", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("In the final stretch, ", data);
+            setPosts([...posts, data]);
+        })
     }
 
     const showArticle = (post) => {
@@ -29,6 +44,7 @@ function Posts() {
                 <div key={post.id}><button onClick={() => showArticle(post)}>{post.title}</button></div>
             ))}
             {selectedPost && <ShowPost post={selectedPost} />}
+            <Form submit={handlePostRequest} />
         </div>
     )
 }
