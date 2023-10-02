@@ -5,6 +5,7 @@ function ShowPost(props) {
 
     return (
         <div>
+            <img src={post.photo}></img>
             <p>{post.body}</p>
         </div>
     )
