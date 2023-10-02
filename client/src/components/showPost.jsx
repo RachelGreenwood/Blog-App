@@ -4,7 +4,7 @@ function ShowPost(props) {
     const { post } = props;
 
     return (
-        <div>
+        <div data-testid='show-post'>
             <img src={post.photo}></img>
             <p>{post.body}</p>
         </div>

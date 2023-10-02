@@ -40,10 +40,12 @@ function Posts() {
 
     return (
         <div>
-            {posts.map((post) => (
-                <div key={post.id}><button onClick={() => showArticle(post)}>{post.title}</button></div>
-            ))}
-            {selectedPost && <ShowPost post={selectedPost} />}
+            <div data-testid='post-list'>
+                {posts.map((post) => (
+                    <div key={post.id}><button onClick={() => showArticle(post)}>{post.title}</button></div>
+                ))}
+                {selectedPost && <ShowPost post={selectedPost} data-testid='selected-post' />}
+            </div>
             <Form submit={handlePostRequest} />
         </div>
     )
