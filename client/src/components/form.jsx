@@ -6,6 +6,13 @@ function Form(props) {
     const blogPhoto= useRef();
     const blogBody = useRef();
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const blogPost = {title: blogTitle.current?.value, photo: blogPhoto.current?.value, body: blogBody.current?.value}
+        console.log("Inside the form, ", blogPost);
+        props.submit(blogPost);
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
