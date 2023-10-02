@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react';
+import './showPost.css';
 
 function ShowPost(props) {
     const { post } = props;
