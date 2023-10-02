@@ -15,5 +15,8 @@
     "cors": "^2.8.5",
     "pg": "^8.11.3",
     "pool": "^0.4.1"
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.16.0"
   }
 }
