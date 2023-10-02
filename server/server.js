@@ -17,4 +17,16 @@ app.get('/', (req, res) => {
     res.json('Welcome to my blog!');
 });
 
+app.get('/posts', async (req, res) => {
+    try{
+        const { rows: posts } = await db.query('SELECT * FROM posts');
+        console.log("Get in the server", posts);
+        res.send(posts);
+
+    } catch(error){
+        console.log(error);
+        return res.status(400).json({error});
+    }
+});
+
 app.listen(PORT, () => console.log(`Hola! Server running on Port http://localhost:${PORT}`));
