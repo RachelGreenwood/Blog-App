@@ -1,0 +1,8 @@
+label, input {
+    display: block;
+    width: 100%;
+}
+
+#article {
+    height: 40vh;
+}

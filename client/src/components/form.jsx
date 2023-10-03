@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import './form.css';
 
 function Form(props) {
 
@@ -10,7 +11,21 @@ function Form(props) {
         e.preventDefault();
         const blogPost = {title: blogTitle.current?.value, photo: blogPhoto.current?.value, body: blogBody.current?.value}
         console.log("Inside the form, ", blogPost);
-        props.submit(blogPost);
+        handlePostRequest(blogPost);
+    }
+
+    const handlePostRequest = (data) => {
+        console.log("Inside the POST, ", data);
+        fetch("http://localhost:8080/posts", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("In the final stretch, ", data);
+            setPosts([...posts, data]);
+        })
     }
 
     return (
@@ -22,7 +37,7 @@ function Form(props) {
                 <label>Photo URL: </label>
                 <input type='text' ref={blogPhoto}></input>
                 <label>Article: </label>
-                <input type='text' ref={blogBody} required></input>
+                <input id='article' type='text' ref={blogBody} required></input>
                 <button type='submit'>Submit</button>
             </form>
         </div>

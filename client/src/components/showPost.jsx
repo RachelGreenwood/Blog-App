@@ -1,7 +1,9 @@
 import './showPost.css';
+import { useParams } from 'react-router-dom';
 
 function ShowPost(props) {
     const { post } = props;
+    const { id } = useParams();
 
     return (
         <div data-testid='show-post'>

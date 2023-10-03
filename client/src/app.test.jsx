@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import App from './App.jsx';
 import Form from './components/form.jsx';
 import Posts from './components/posts.jsx';
@@ -20,6 +20,8 @@ test("The list of posts renders", async () => {
     await waitFor(() => getByTestId('post-list'));
 });
 
-test("The full post renders", async () => {
-    //render (<ShowPost />)
+test("The full post renders", () => {
+    const { getByRole } = render(<ShowPost />);
+    const imgElement = getByRole('img');
+    expect(imgElement).toBeInTheDocument();
 });
