@@ -11,21 +11,7 @@ function Form(props) {
         e.preventDefault();
         const blogPost = {title: blogTitle.current?.value, photo: blogPhoto.current?.value, body: blogBody.current?.value}
         console.log("Inside the form, ", blogPost);
-        handlePostRequest(blogPost);
-    }
-
-    const handlePostRequest = (data) => {
-        console.log("Inside the POST, ", data);
-        fetch("http://localhost:8080/posts", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log("In the final stretch, ", data);
-            setPosts([...posts, data]);
-        })
+        props.submit(blogPost);
     }
 
     return (
